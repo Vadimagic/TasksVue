@@ -9,8 +9,9 @@
 				</div>
 				<div class="chips" ref="chips"></div>
 				<div class="input-field">
-					<textarea id="textarea1" class="materialize-textarea"></textarea>
-					<label for="textarea1">Textarea</label>
+					<textarea id="description" class="materialize-textarea" v-model="text"></textarea>
+					<label for="description">Textarea</label>
+					<span class="character-counter" style="float: right; font-size: 12px;">{{checkLengthText()}}/{{lengthText}}</span>
 				</div>
 			</div>
 		</div>
@@ -21,6 +22,21 @@
 
 export default {
 	name: 'Home',
+	data() {
+		return {
+			title: '',
+			text: '',
+			lengthText: 1024
+		}
+	},
+	methods: {
+		checkLengthText() {
+			if (this.text.length > this.lengthText) {
+				this.text = this.text.slice(0, this.lengthText)
+			}
+			return this.text.length
+		}
+	},
 	mounted() {
 		M.Chips.init(this.$refs.chips, {
 			placeholder: 'Теги заданий'
