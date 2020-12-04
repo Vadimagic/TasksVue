@@ -2,6 +2,15 @@
 	<div class="row">
 		<div class="col s6 offset-s3">
 			<h1>Список задач</h1>
+
+			<select ref="select" v-model="filter">
+				<option value="" class="" disabled selected>Выберите опцию по статусу</option>
+				<option value="">Все</option>
+				<option value="в работе">В работе</option>
+				<option value="время вышло">Время вышло</option>
+				<option value="выполнено">Выполнено</option>
+			</select>
+
 		</div>
 		<table v-if="tasks.length">
 			<thead>
@@ -15,7 +24,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="(task, index) of tasks" :key="task.id">
+				<tr v-for="(task, index) of displayTasks" :key="task.id">
 					<td>{{index + 1}}</td>
 					<td>{{task.title}}</td>
 					<td class="td-text"><div class="text">{{task.text}}</div></td>
@@ -37,10 +46,27 @@
 
 export default {
 	name: 'list',
+	data() {
+		return {
+			filter: null,
+		}
+	},
 	computed: {
 		tasks() {
 			return this.$store.getters.tasks
+		},
+		displayTasks() {
+			return this.tasks.filter(task => {
+				if (!this.filter) {
+					return true
+				}
+				return task.status === this.filter
+			})
 		}
+	},
+	mounted() {
+		M.FormSelect.init(this.$refs.select);
+		M.FormSelect.getInstance(this.$refs.selected);
 	}
 }
 </script>

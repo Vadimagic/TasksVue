@@ -22,8 +22,8 @@
 						<i class="material-icons right">sentiment_very_satisfied</i>
 					</button>
 				</div>
-				<button v-else @click="deleteTask" class="btn waves-effect waves-light red darken-4" type="button">
-					Удалить выполненное задание
+				<button @click="deleteTask" style="margin-top: 30px" class="btn waves-effect waves-light red darken-4" type="button">
+					Удалить {{task.status === 'выполнено' ? 'выполненное' :  ''}} задание
 					<i class="material-icons right">delete_forever</i>
 				</button>
 			</form>
