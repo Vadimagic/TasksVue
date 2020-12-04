@@ -9,8 +9,8 @@ export default new Vuex.Store({
 	},
 	mutations: {
 		addTask(state, task) {
-			localStorage.setItem('tasks', JSON.stringify(task))
-			state.tasks = JSON.parse(localStorage.getItem('tasks') || '[]')
+			state.tasks.push(task)
+			localStorage.setItem('tasks', JSON.stringify(state.tasks))
 		}
 	},
 	actions: {
@@ -18,6 +18,7 @@ export default new Vuex.Store({
 			commit('addTask', task)
 		}
 	},
-	modules: {
+	getters: {
+		tasks: state => state.tasks
 	}
 })
