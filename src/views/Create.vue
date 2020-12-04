@@ -12,14 +12,14 @@
 						required
 						v-model="title"
 					>
-					<label for="title">Title</label>
+					<label for="title">Заголовок</label>
 				</div>
 
 				<div class="chips" ref="chips"></div>
 
 				<div class="input-field">
 					<textarea v-model="text" id="description" class="materialize-textarea"></textarea>
-					<label for="description">Textarea</label>
+					<label for="description">Текст</label>
 					<span class="character-counter">{{checkLengthText()}}/{{lengthText}}</span>
 				</div>
 

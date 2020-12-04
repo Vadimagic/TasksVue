@@ -11,11 +11,31 @@ export default new Vuex.Store({
 		addTask(state, task) {
 			state.tasks.push(task)
 			localStorage.setItem('tasks', JSON.stringify(state.tasks))
+		},
+		updateTask(state, {id, tags, text, date}) {
+			state.tasks = state.tasks.map(task => {
+				if (task.id === id) {
+					return {
+						...task,
+						tags,
+						text,
+						date,
+						status: ( new Date(date) > new Date() ) 
+							? 'в работе' 
+							: 'время вышло'
+					}
+				}
+				return task
+			})
+			localStorage.setItem('tasks', JSON.stringify(state.tasks))
 		}
 	},
 	actions: {
 		addTask({commit}, task) {
 			commit('addTask', task)
+		},
+		updateTask({commit}, task) {
+			commit('updateTask', task)
 		}
 	},
 	getters: {
