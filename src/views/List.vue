@@ -66,7 +66,6 @@ export default {
 	},
 	mounted() {
 		M.FormSelect.init(this.$refs.select);
-		M.FormSelect.getInstance(this.$refs.selected);
 	}
 }
 </script>
