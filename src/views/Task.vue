@@ -12,13 +12,19 @@
 
 				<input type="text" class="datepicker" ref="datepicker">
 
-				<button style="margin-right: 2rem" class="btn waves-effect waves-light deep-purple darken-1" type="submit">
+				<div v-if="task.status !== 'выполнено'">
+					<button style="margin-right: 2rem" class="btn waves-effect waves-light deep-purple darken-1" type="submit">
 					Изменить задание
 					<i class="material-icons right">send</i>
-				</button>
-				<button @click="completeTask" class="btn waves-effect waves-light purple accent-3" type="button">
-					Завершить задание
-					<i class="material-icons right">sentiment_very_satisfied</i>
+					</button>
+					<button @click="completeTask" class="btn waves-effect waves-light purple accent-3" type="button">
+						Завершить задание
+						<i class="material-icons right">sentiment_very_satisfied</i>
+					</button>
+				</div>
+				<button v-else @click="deleteTask" class="btn waves-effect waves-light red darken-4" type="button">
+					Удалить выполненное задание
+					<i class="material-icons right">delete_forever</i>
 				</button>
 			</form>
 		</div>
@@ -53,6 +59,10 @@ export default {
 		},
 		completeTask() {
 			this.$store.dispatch('completeTask', this.task.id)
+			this.$router.push('/list')
+		},
+		deleteTask() {
+			this.$store.dispatch('deleteTask', this.task.id)
 			this.$router.push('/list')
 		}
 	},

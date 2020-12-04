@@ -40,6 +40,10 @@ export default new Vuex.Store({
 				return task
 			})
 			localStorage.setItem('tasks', JSON.stringify(state.tasks))
+		},
+		deleteTask(state, id) {
+			state.tasks = state.tasks.filter(task => task.id !== id)
+			localStorage.setItem('tasks', JSON.stringify(state.tasks))
 		}
 	},
 	actions: {
@@ -51,6 +55,9 @@ export default new Vuex.Store({
 		},
 		completeTask({commit}, id) {
 			commit('completeTask', id)
+		},
+		deleteTask({commit}, id) {
+			commit('deleteTask', id)
 		}
 	},
 	getters: {
