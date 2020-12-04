@@ -6,8 +6,15 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		tasks: JSON.parse(localStorage.getItem('tasks') || '[]').map(task => {
-			if (new Date(task.date) < new Date()) {
+			const dateEnd = new Date(task.date)
+			dateEnd.setHours(23);
+			dateEnd.setMinutes(59);
+			dateEnd.setSeconds(59);
+			dateEnd.setMilliseconds(999);
+			if (dateEnd < new Date() && task.status !== 'выполнено') {
 				task.status = 'время вышло'
+			} else {
+				task.status = 'в работе'
 			}
 			return task
 		})
@@ -25,9 +32,18 @@ export default new Vuex.Store({
 						tags,
 						text,
 						date,
-						status: ( new Date(date) > new Date() ) 
-							? 'в работе' 
-							: 'время вышло'
+						status: (() => {
+							const dateEnd = new Date(date)
+							dateEnd.setHours(23);
+							dateEnd.setMinutes(59);
+							dateEnd.setSeconds(59);
+							dateEnd.setMilliseconds(999);
+							if (dateEnd < new Date() && task.status !== 'выполнено') {
+								return 'время вышло'
+							} else {
+								return 'в работе'
+							}
+						})()
 					}
 				}
 				return task
