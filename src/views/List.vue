@@ -1,5 +1,5 @@
 <template>
-	<div class="row">
+	<div class="row" v-if="tasks.length">
 		<div class="col s6 offset-s3">
 			<h1>Список задач</h1>
 
@@ -12,7 +12,7 @@
 			</select>
 
 		</div>
-		<table v-if="tasks.length">
+		<table>
 			<thead>
 				<tr>
 					<th>#</th>
@@ -38,7 +38,11 @@
 				</tr>
 			</tbody>
 		</table>
-		<p v-else>Задач нету</p>
+	</div>
+	<div v-else class="row">
+		<div class="col s6 offset-s3">
+			<h1>Задач нет</h1>
+		</div>
 	</div>
 </template>
 
