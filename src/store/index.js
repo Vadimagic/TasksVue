@@ -28,6 +28,18 @@ export default new Vuex.Store({
 				return task
 			})
 			localStorage.setItem('tasks', JSON.stringify(state.tasks))
+		},
+		completeTask(state, id) {
+			state.tasks = state.tasks.map(task => {
+				if (task.id === id) {
+					return {
+						...task,
+						status: 'выполнено'
+					}
+				}
+				return task
+			})
+			localStorage.setItem('tasks', JSON.stringify(state.tasks))
 		}
 	},
 	actions: {
@@ -36,6 +48,9 @@ export default new Vuex.Store({
 		},
 		updateTask({commit}, task) {
 			commit('updateTask', task)
+		},
+		completeTask({commit}, id) {
+			commit('completeTask', id)
 		}
 	},
 	getters: {

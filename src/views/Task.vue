@@ -52,7 +52,7 @@ export default {
 			this.$router.push('/list')
 		},
 		completeTask() {
-			this.$store.dispathc('completeTask', this.task.id)
+			this.$store.dispatch('completeTask', this.task.id)
 			this.$router.push('/list')
 		}
 	},
