@@ -1,8 +1,8 @@
 <template>
-	<nav class="deep-purple accent-2">
+	<nav class="deep-purple">
 		<div class="container">
 			<div class="nav-wrapper">
-				<router-link href="#!" to="/" class="brand-logo">Задания</router-link>
+				<router-link to="/" class="brand-logo">Задания</router-link>
 				<ul class="right hide-on-med-and-down">
 					<router-link tag="li" to="/" exact active-class="active">
 						<a href="sass.html">Добавить</a>
