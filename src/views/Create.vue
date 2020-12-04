@@ -73,7 +73,7 @@ export default {
 			placeholder: 'Теги заданий'
 		});
 		this.date = M.Datepicker.init(this.$refs.datepicker, {
-			format: 'dd-mm-yyyy',
+			format: 'dd.mm.yyyy',
 			defaultDate: new Date(),
 			setDefaultDate: true
 		});
@@ -93,12 +93,5 @@ export default {
 	.character-counter {
 		float: right;
 		font-size: 12px;
-	}
-
-	$primary-color: #783edc;
-	$secondary-color: #FFFFFF;
-
-	.datepicker-date-display {
-		background-color: $primary-color;
 	}
 </style>

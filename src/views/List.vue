@@ -16,10 +16,10 @@
 			</thead>
 			<tbody>
 				<tr v-for="(task, index) of tasks" :key="task.id">
-					<td>{{index}}</td>
+					<td>{{index + 1}}</td>
 					<td>{{task.title}}</td>
-					<td><div>{{task.text}}</div></td>
-					<td>{{task.date}}</td>
+					<td class="td-text"><div class="text">{{task.text}}</div></td>
+					<td>{{new Date(task.date).toLocaleDateString()}}</td>
 					<td>{{task.status}}</td>
 					<td>
 						<router-link tag="button" class="btn btn-small deep-purple" :to="'/task/' + task.id">
@@ -44,3 +44,14 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+	.td-text {
+		max-width: 400px;
+	}
+	.text {
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+</style>
