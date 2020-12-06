@@ -37,7 +37,7 @@
 						</router-link>
 					</td>
 					<td>
-						<button class="btn btn-small" @click="deleteTask(task.id)">
+						<button class="btn btn-small red darken-2" @click="deleteTask(task.id)">
 							Удалить
 						</button>
 					</td>
