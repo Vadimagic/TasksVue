@@ -60,6 +60,7 @@ export default {
 			return this.$store.getters.tasks
 		},
 		displayTasks() {
+			this.tasks.sort((a, b) => new Date(a.date) > new Date(b.date) ? 1 : -1)
 			return this.tasks.filter(task => {
 				if (!this.filter) {
 					return true

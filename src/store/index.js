@@ -22,9 +22,6 @@ export default new Vuex.Store({
 	mutations: {
 		addTask(state, task) {
 			state.tasks.push(task)
-			console.log(state.tasks[state.tasks.length - 1].date)
-			state.tasks.sort((a, b) => new Date(a.date) > new Date(b.date) ? 1 : -1)
-			console.log(state.tasks[0].date)
 			localStorage.setItem('tasks', JSON.stringify(state.tasks))
 		},
 		updateTask(state, {id, tags, text, date}) {
