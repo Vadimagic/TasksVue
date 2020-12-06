@@ -21,6 +21,7 @@
 					<th>Дата</th>
 					<th>Статус</th>
 					<th>Открыть</th>
+					<th>Удалить</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -34,6 +35,11 @@
 						<router-link tag="button" class="btn btn-small deep-purple" :to="'/task/' + task.id">
 							Открыть
 						</router-link>
+					</td>
+					<td>
+						<button class="btn btn-small" @click="deleteTask(task.id)">
+							Удалить
+						</button>
 					</td>
 				</tr>
 			</tbody>
@@ -53,6 +59,11 @@ export default {
 	data() {
 		return {
 			filter: null,
+		}
+	},
+	methods: {
+		deleteTask(id) {
+			this.$store.dispatch('deleteTask', id)
 		}
 	},
 	computed: {
