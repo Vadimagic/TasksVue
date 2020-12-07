@@ -18,7 +18,7 @@
 					Изменить задание
 					<i class="material-icons right">send</i>
 					</button>
-					<button @click="completeTask" class="btn waves-effect waves-light purple accent-3" type="button">
+					<button v-if="task.status !== 'время вышло'" @click="completeTask" class="btn waves-effect waves-light purple accent-3" type="button">
 						Завершить задание
 						<i class="material-icons right">sentiment_very_satisfied</i>
 					</button>
