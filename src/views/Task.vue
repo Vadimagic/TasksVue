@@ -8,6 +8,7 @@
 				<div class="input-field">
 					<textarea v-model="text" id="description" class="materialize-textarea"></textarea>
 					<label for="description" class="active">Текст</label>
+					<span class="character-counter" style="float: right">{{checkLengthText()}}/{{lengthText}}</span>
 				</div>
 
 				<input type="text" class="datepicker" ref="datepicker">
@@ -44,10 +45,17 @@ export default {
 		return {
 			tags: null,
 			text: '',
-			date: null
+			date: null,
+			lengthText: 1024
 		}
 	},
 	methods: {
+		checkLengthText() {
+			if (this.text.length > this.lengthText) {
+				this.text = this.text.slice(0, this.lengthText)
+			}
+			return this.text.length
+		},
 		updateTask() {
 			this.$store.dispatch('updateTask', {
 				id: this.task.id,

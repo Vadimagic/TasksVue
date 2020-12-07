@@ -12,6 +12,7 @@
 			</select>
 
 		</div>
+
 		<table>
 			<thead>
 				<tr>
@@ -30,7 +31,11 @@
 					<td>{{task.title}}</td>
 					<td class="td-text"><div class="text">{{task.text}}</div></td>
 					<td>{{new Date(task.date).toLocaleDateString()}}</td>
-					<td>{{task.status}}</td>
+					<td :class="task.status === 'время вышло' 
+							? 'fail' 
+							: task.status === 'выполнено'
+								? 'active'
+								: ''">{{task.status}}</td>
 					<td>
 						<router-link tag="button" class="btn btn-small deep-purple" :to="'/task/' + task.id">
 							Открыть
